@@ -36,6 +36,7 @@ return (
                             <img width="100%" src={data.image} alt="Card image cap" />
                             <CardTitle>{data.name}</CardTitle>
                             <CardText>{data.description}</CardText>
+                            <CardText></CardText>
                         </Card>
                     </Col>
                 </Row>
