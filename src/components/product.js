@@ -7,10 +7,12 @@ import ReactIdSwiper from 'react-id-swiper/lib/ReactIdSwiper.custom';
 import Axios from 'axios'
 import Shuffle from 'shuffle-array'
 import Skeleton from 'react-skeleton-loader';
+import RightIcon from 'react-ionicons/lib/IosArrowForward'
+import { Link } from "react-router-dom";
 
 class Product extends Component {
-    constructor() {
-        super()
+    constructor(props, context) {
+        super(props, context)
         this.state = {
             products: [],
             isLoading: true,
@@ -56,15 +58,16 @@ class Product extends Component {
             <div style={productStyling.productPage}>
                 <div>
                     <p style={productStyling.headerContent}>Menarik Untuk Dijual</p>
-                    <a href="#" style={{ float: "right", marginTop: -35, marginRight: 10 }}>
-                        <span style={{ fontSize: 20, fontWeight: 500 }}>{" > "}</span>
-                    </a>
+                    <span style={{ fontSize: 20, fontWeight: 500, float: "right", marginTop: -35, marginRight: 10 }}><Link to={'/products'}>
+                        <RightIcon color="#007BFF" beat={true} />
+                    </Link>
+                    </span>
                 </div>
                 {isLoading ? this.Ghosting() :
                     <ReactIdSwiper {...params}>
                         {products.slice(0, 8).map((product, index) => {
                             return (
-                                <a href="#" key={index} style={productStyling.hrefElement}>
+                                <Link to={('/products/detail?id=' + product.id + '&code=' + product.code)} key={index} style={productStyling.hrefElement}>
                                     <div style={{
                                         width: 125,
                                         height: 80,
@@ -76,7 +79,7 @@ class Product extends Component {
                                         backgroundRepeat: "no-repeat"
                                     }}>
                                     </div>
-                                </a>
+                                </Link>
                             )
                         })}
                     </ReactIdSwiper>
@@ -100,7 +103,7 @@ const productStyling = {
         color: "#353535",
         fontWeight: "500",
         marginBottom: 5
-      },
+    },
     hrefElement: {
         textDecoration: 'none',
         backgroundColor: 'transparent'

@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Badge } from 'reactstrap';
 import axios from "axios";
 import Token from "../../config/secure.json";
+import RightIcon from 'react-ionicons/lib/IosArrowForward'
+import { Link } from "react-router-dom";
+
 
 class Category extends Component {
   constructor(props) {
@@ -9,7 +12,6 @@ class Category extends Component {
     this.state = {
       list: []
     };
-    this.ProductTag = this.ProductTag.bind(this);
   }
 
   componentDidMount() {
@@ -28,28 +30,26 @@ class Category extends Component {
     );
   }
 
-  ProductTag(event) {
-    window.location = '/product?tag=' + event + ''
-  }
-
   render() {
     const ListCategory = this.state.list;
     return (
       <div style={categoryStyling.mainPage}>
         <div>
           <p style={categoryStyling.headerContent}>Kategori Unggulan</p>
-          <a href="#" style={{ float: "right", marginTop: -35, marginRight: 10 }}>
-            <span style={{ fontSize: 20, fontWeight: 500 }}>{" > "}</span>
-          </a>
+          <span style={{ fontSize: 20, fontWeight: 500, float: "right", marginTop: -35, marginRight: 10 }}>
+            <Link to={'/categories'}>
+              <RightIcon color="#007BFF" beat={true} />
+            </Link>
+          </span>
         </div>
         <div>
           {ListCategory.filter(filters => {
             return filters.total_product > 4
           }).map((data, index) => {
             return (
-              <a key={data.id}>
-                <Badge onClick={() => this.ProductTag(data.category_name)} color="secondary" pill style={categoryStyling.badgeContent}>{data.category_name}{" ("}{data.total_product}{")"}</Badge>
-              </a>
+              <Link key={data.id} to={'/product?tag=' + data.category_name}>
+                <Badge color="secondary" pill style={categoryStyling.badgeContent}>{data.category_name}{" ("}{data.total_product}{")"}</Badge>
+              </Link>
             )
           })
           }
@@ -61,7 +61,7 @@ class Category extends Component {
 
 const categoryStyling = {
   mainPage: {
-    margin: "-5px 0 15px 0",
+    margin: "1px 0 15px 0",
   },
   headerContent: {
     fontSize: "1.1em",
