@@ -6,6 +6,7 @@ import {
 import Banner from "./banner";
 import Product from "./product";
 import Category from "./category";
+import Footer from "./footer";
 
 class Index extends Component {
   render() {
@@ -24,6 +25,11 @@ class Index extends Component {
         <Row>
           <Col>
             <Category />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Footer/>
           </Col>
         </Row>
       </Container>
