@@ -8,9 +8,6 @@ import {
   NavItem,
   NavLink,
   Form,
-  InputGroup,
-  FormGroup,
-  Button
 } from "reactstrap";
 
 class InternalNavbar extends Component {
