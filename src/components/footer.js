@@ -13,7 +13,7 @@ const Footer = () => {
 
 const footerStyling = {
     mainComponent: {
-        marginTop: 35,
+        marginTop: 5,
         clear: "both",
         position: "relative",
         bottom: 0,

@@ -33,7 +33,7 @@ class Product extends Component {
             items.push(<div key={i}><Skeleton width="145px" height="100px" /></div>);
         }
         return <ReactIdSwiper {...this.state.params}>
-                {items}
+            {items}
         </ReactIdSwiper>
     }
 
@@ -55,20 +55,20 @@ class Product extends Component {
         return (
             <div style={productStyling.productPage}>
                 <div>
-                    <h6>Produk Unggulan</h6>
+                    <p style={productStyling.headerContent}>Menarik Untuk Dijual</p>
                     <a href="#" style={{ float: "right", marginTop: -35, marginRight: 10 }}>
                         <span style={{ fontSize: 20, fontWeight: 500 }}>{" > "}</span>
                     </a>
                 </div>
-                    {isLoading ? this.Ghosting() :
+                {isLoading ? this.Ghosting() :
                     <ReactIdSwiper {...params}>
                         {products.slice(0, 8).map((product, index) => {
                             return (
                                 <a href="#" key={index} style={productStyling.hrefElement}>
                                     <div style={{
-                                        width: 135,
-                                        height: 100,
-                                        border: "1px solid #787878",
+                                        width: 125,
+                                        height: 80,
+                                        border: "1px solid #999999",
                                         borderRadius: 5,
                                         backgroundSize: "cover",
                                         backgroundPosition: "center",
@@ -77,9 +77,10 @@ class Product extends Component {
                                     }}>
                                     </div>
                                 </a>
-                            )})}
+                            )
+                        })}
                     </ReactIdSwiper>
-                    }
+                }
             </div>
         )
     }
@@ -94,6 +95,12 @@ const productStyling = {
         height: 100,
         borderRadius: 5,
     },
+    headerContent: {
+        fontSize: "1.1em",
+        color: "#353535",
+        fontWeight: "500",
+        marginBottom: 5
+      },
     hrefElement: {
         textDecoration: 'none',
         backgroundColor: 'transparent'

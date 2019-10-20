@@ -13,7 +13,7 @@ import Skeleton from 'react-skeleton-loader';
 
 
 const Banner = () => {
-  const baseStaticApiUrl = "https://dev.api.halosis.id/static/images/cms/"
+  const baseStaticApiUrl = "https://stg.api.halosis.id/static/images/cms/"
   const [getBanner, setBanner] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -35,7 +35,7 @@ const Banner = () => {
   }
 
   const bannerAPI = () => {
-    const endPoint = "https://dev.api.halosis.id/v1/cms/banners";
+    const endPoint = "https://stg.api.halosis.id/v1/cms/banners";
     Axios.get(endPoint, {
       headers: {
         "Authorization": `Bearer ${Token.bearer}`
