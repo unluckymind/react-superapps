@@ -6,6 +6,8 @@ import Signin from "./components/signin";
 import Signup from "./components/signup";
 import Product from "./components/productTag";
 import InternalNavbar from "./components/internalNavbar";
+import ProductDetail from "./components/product_detail";
+
 
 class Main extends Component {
   render() {
@@ -18,6 +20,8 @@ class Main extends Component {
           <Route path="/signin" component={Signin} />
           <Route path="/signup" component={Signup} />
           <Route path="/product" component={Product} />
+          <Route path="/products/detail" component={ProductDetail} />
+
         </Switch>
       </BrowserRouter>
     );
