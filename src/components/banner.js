@@ -8,10 +8,14 @@ import {
 } from 'reactstrap'
 import Axios from "axios";
 import Token from "../../config/secure.json";
+import Skeleton from 'react-skeleton-loader';
+
+
 
 const Banner = () => {
-  const baseStaticApiUrl = "https://dev.api.halosis.id/static/images/cms/"
+  const baseStaticApiUrl = "https://stg.api.halosis.id/static/images/cms/"
   const [getBanner, setBanner] = useState([]);
+  const [isLoading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -19,13 +23,24 @@ const Banner = () => {
     bannerAPI();
   }, []);
 
+  const Ghosting = () => {
+    const items = (
+    <div style={bannerStyle.mainPage}>
+      <div style={{width: "550px", height: "170px"}}>
+        <Skeleton width="100%" height="250px"/>
+      </div>
+    </div>
+    );
+    return items
+  }
+
   const bannerAPI = () => {
-    const endPoint = "https://dev.api.halosis.id/v1/cms/banners";
+    const endPoint = "https://stg.api.halosis.id/v1/cms/banners";
     Axios.get(endPoint, {
       headers: {
         "Authorization": `Bearer ${Token.bearer}`
       }
-    }).then(result => setBanner(result.data.payload.data));
+    }).then(result => {setBanner(result.data.payload.data), setLoading(false)});
   };
 
   const next = () => {
@@ -56,20 +71,20 @@ const Banner = () => {
       </CarouselItem>
     );
   });
-
   return (
+    isLoading ? Ghosting() : 
     <div style={bannerStyle.mainPage}>
       <Carousel
         activeIndex={activeIndex}
         next={next}
         previous={previous}
-      >
+        >
         <CarouselIndicators items={getBanner} activeIndex={activeIndex} onClickHandler={goToIndex} />
         {slides}
         <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
         <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
       </Carousel>
-    </div>
+      </div>
   );
 };
 
