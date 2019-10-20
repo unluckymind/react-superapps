@@ -25,7 +25,7 @@ class InternalNavbar extends Component {
           <img src="../../assets/logo_navbar.svg" height="40px"/>
         </NavbarBrand>
         <Form>
-        <input placeholder="contoh: batik ..." id="Search" name="Search" type="search" style={navbarStyling.searchbar}/>
+        <input placeholder="Contoh: Batik ..." id="Search" name="Search" type="search" style={navbarStyling.searchbar}/>
         </Form>
         <NavbarToggler
           className="mr-2 ml-2"
@@ -59,8 +59,8 @@ const navbarStyling = {
   searchbar: {
     width: "84%",
     borderRadius: "15px",
-    fontSize: "12px",
-    padding: "7px 12px",
+    fontSize: "13px",
+    padding: "10px 15px",
     border: "1px solid #fff",
     marginRight: "10px",
     boxShadow: "inset 0 0 2px 2px #ecf0f1",

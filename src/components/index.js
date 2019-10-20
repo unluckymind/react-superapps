@@ -11,7 +11,7 @@ import Footer from "./footer";
 class Index extends Component {
   render() {
     return (
-      <Container>
+      <Container style={styling}>
         <Row>
           <Col>
             <Banner />
@@ -36,5 +36,7 @@ class Index extends Component {
     );
   }
 }
+
+const styling = {fontFamily: "Helvetica, Arial, sans-serif"}
 
 export default Index;

@@ -15,10 +15,10 @@ class Category extends Component {
   componentDidMount() {
     axios({
       method: "get",
-      url: "https://dev.api.halosis.id/v1/categories",
+      url: "https://stg.api.halosis.id/v1/categories",
       // url: "http://localhost:3000/v3/products/list/tag",
       headers: {
-        "Authorization" : `Bearer ${Token.bearer}`,
+        "Authorization": `Bearer ${Token.bearer}`,
         "Acces-Control-Allow-Origin": true,
         "Content-Type": "application/json",
         Accept: "application/json"
@@ -29,23 +29,29 @@ class Category extends Component {
   }
 
   ProductTag(event) {
-    window.location = '/product?tag='+ event + ''
+    window.location = '/product?tag=' + event + ''
   }
 
   render() {
     const ListCategory = this.state.list;
     return (
-      <div>
-        <div>KATEGORI</div>
+      <div style={categoryStyling.mainPage}>
+        <div>
+          <p style={categoryStyling.headerContent}>Kategori Unggulan</p>
+          <a href="#" style={{ float: "right", marginTop: -35, marginRight: 10 }}>
+            <span style={{ fontSize: 20, fontWeight: 500 }}>{" > "}</span>
+          </a>
+        </div>
         <div>
           {ListCategory.filter(filters => {
-            return filters.total_product > 4}).map((data, index) => {
-              return (
-                <a key={data.id}>
-                  <Badge onClick={() => this.ProductTag(data.category_name)} color="secondary" pill style={Margin}>{data.category_name}{" ("}{data.total_product}{")"}</Badge>
-                </a>
-              )
-            })
+            return filters.total_product > 4
+          }).map((data, index) => {
+            return (
+              <a key={data.id}>
+                <Badge onClick={() => this.ProductTag(data.category_name)} color="secondary" pill style={categoryStyling.badgeContent}>{data.category_name}{" ("}{data.total_product}{")"}</Badge>
+              </a>
+            )
+          })
           }
         </div>
       </div>
@@ -53,10 +59,26 @@ class Category extends Component {
   };
 };
 
-const Margin = {
-  margin: "3px",
-  padding: "10px 16px",
-  border: "35px"
+const categoryStyling = {
+  mainPage: {
+    margin: "-5px 0 15px 0",
+  },
+  headerContent: {
+    fontSize: "1.1em",
+    color: "#353535",
+    fontWeight: "500",
+    marginBottom: 5
+  },
+  badgeContent: {
+    margin: "5px",
+    padding: "10px 16px",
+    border: "35px",
+    fontSize: ".9em",
+    fontWeight: "100",
+    backgroundColor: "#e8d7ff",
+    color: "#000",
+    borderRadius: 10,
+  }
 }
 
 export default Category;
