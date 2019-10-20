@@ -37,6 +37,7 @@ return (
                             <CardTitle>{data.name}</CardTitle>
                             <CardText>{data.description}</CardText>
                             <CardText></CardText>
+                            <CardText></CardText>
                         </Card>
                     </Col>
                 </Row>
