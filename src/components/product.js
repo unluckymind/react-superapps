@@ -53,7 +53,6 @@ class Product extends Component {
 
     render() {
         let { products, isLoading, params } = this.state
-
         return (
             <div style={productStyling.productPage}>
                 <div>
@@ -66,6 +65,7 @@ class Product extends Component {
                 {isLoading ? this.Ghosting() :
                     <ReactIdSwiper {...params}>
                         {products.slice(0, 8).map((product, index) => {
+                            console.log(product)
                             return (
                                 <Link to={('/products/detail?id=' + product.id + '&code=' + product.code)} key={index} style={productStyling.hrefElement}>
                                     <div style={{
