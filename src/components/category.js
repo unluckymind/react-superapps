@@ -4,12 +4,14 @@ import axios from "axios";
 import Token from "../../config/secure.json";
 import RightIcon from 'react-ionicons/lib/IosArrowForward'
 import { Link } from "react-router-dom";
+import Skeleton from 'react-skeleton-loader';
 
 
 class Category extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: true,
       list: []
     };
   }
@@ -26,12 +28,21 @@ class Category extends Component {
         Accept: "application/json"
       },
     }).then(result =>
-      this.setState({ list: result.data.payload.data })
+      this.setState({ list: result.data.payload.data, isLoading: false })
     );
   }
 
+Ghosting() {
+  const items = []
+  for (var i = 0; i < 20; i++) {
+      items.push(
+      <Skeleton key={i} color="#e8d7ff" width="145px" height="28px"/>);
+  }
+  return items
+  }
+
   render() {
-    const ListCategory = this.state.list;
+    const {isLoading, list} = this.state;
     return (
       <div style={categoryStyling.mainPage}>
         <div>
@@ -43,7 +54,9 @@ class Category extends Component {
           </span>
         </div>
         <div>
-          {ListCategory.filter(filters => {
+          {
+            isLoading ? this.Ghosting() :
+            list.filter(filters => {
             return filters.total_product > 4
           }).map((data, index) => {
             return (
