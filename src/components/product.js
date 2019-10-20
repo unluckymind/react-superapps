@@ -49,10 +49,6 @@ class Product extends Component {
         }).then(result => this.setState({ products: Shuffle(result.data.data.products), isLoading: false }));
     }
 
-    productDetail = (id, code)=> {
-        window.location = '/detail?id='+id+'&code='+code;
-    }
-
     render() {
         let { products, isLoading, params } = this.state
         return (
@@ -68,7 +64,7 @@ class Product extends Component {
                         {products.slice(0, 8).map((product, index) => {
                             console.log(product)
                             return (
-                                <a href="#" onClick={() => this.productDetail(product.id, product.product_code)} key={index} style={productStyling.hrefElement}>
+                                <a href="#" key={index} style={productStyling.hrefElement}>
                                     <div style={{
                                         width: 135,
                                         height: 100,
