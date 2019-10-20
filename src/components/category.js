@@ -9,6 +9,7 @@ class Category extends Component {
     this.state = {
       list: []
     };
+    this.ProductTag = this.ProductTag.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +28,10 @@ class Category extends Component {
     );
   }
 
+  ProductTag(event) {
+    window.location = '/product?tag='+ event + ''
+  }
+
   render() {
     const ListCategory = this.state.list;
     return (
@@ -36,8 +41,8 @@ class Category extends Component {
           {ListCategory.filter(filters => {
             return filters.total_product > 4}).map((data, index) => {
               return (
-                <a href="#" key={data.id}>
-                  <Badge color="secondary" pill style={Margin}>{data.category_name}{" ("}{data.total_product}{")"}</Badge>
+                <a key={data.id}>
+                  <Badge onClick={() => this.ProductTag(data.category_name)} color="secondary" pill style={Margin}>{data.category_name}{" ("}{data.total_product}{")"}</Badge>
                 </a>
               )
             })
