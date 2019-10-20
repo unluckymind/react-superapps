@@ -19,7 +19,7 @@ class ProductDetail extends Component {
         this.state = {
             products: [],
             isLoading: true,
-            
+            img: []
         }
     }
 
@@ -33,36 +33,23 @@ class ProductDetail extends Component {
                 "Content-Type": "application/json",
                 "x-localization": "id"
             }
-        }).then(result => this.setState({ products: result.data.data }));
+        }).then(result => this.setState({ products: result.data.data, img: result.data.data.images }));
     }
-
+    
     render() {
-        let { products, isLoading } = this.state;
-        
+        let { products, isLoading, img } = this.state;
         return (
-            
-            
             <div>
-                <img src={products.images} style={{height:400, width:500}}/>
-                <p>ini adalah product id {products.id}</p>
-                <p>product code {products.product_code}</p>
-                <p>product name {products.name}</p>
-                <p>gambar {products.images}</p>
-                <p>deskripsi: {products.description}</p>
-            </div>
+                {img.map((p, index) => {
+                    return(
+                    <div key={index}>
+                        <img src={p}/>
+                    </div>
+                    )
+                })}
+        </div>
         )
     }
 }
-
-const bannerStyle = {
-    mainPage: {
-      marginTop: "15px",
-    },
-    imageCarousel: {
-      height: "160px",
-      width: "100%",
-      borderRadius: 8
-    }
-  };
 
 export default ProductDetail;
